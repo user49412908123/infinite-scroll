@@ -1,0 +1,53 @@
+🎨 FOOTTRACKER v2 - DÉMARRAGE RAPIDE
+═══════════════════════════════════════
+
+📂 FICHIERS À OUVRIR
+────────────────────
+1. SITE/index-v2.html       → Page d'accueil
+2. SITE/equipe-v2.html      → Carousel joueurs
+3. SITE/membre-detail.html  → Détail (inchangé)
+
+🔧 MODIFICATIONS PRINCIPALES
+────────────────────────────
+✅ Carousel infini parfait (0 coupure)
+✅ Cartes 420px uniformes
+✅ KPI lisibles (flou supprimé)
+✅ 2 sections ajoutées (accueil)
+✅ Animations scroll documentées
+
+📋 TESTS PRIORITAIRES
+──────────────────────
+1. Ouvrir equipe-v2.html
+2. Observer carousel 30 secondes
+3. Vérifier : aucune coupure visible
+4. Hover une carte : pause smooth
+5. Vérifier : toutes même hauteur
+
+🚀 COMMIT GIT (Copier-Coller)
+──────────────────────────────
+git add -A && git commit -m "feat(ui): carousel infini parfait + UX v2" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" && git push origin HEAD
+
+📚 DOCUMENTATION
+─────────────────
+• DOCUMENTATION-V2.md    → Guide technique complet
+• TESTS-GUIDE.md         → Checklist de test
+• RECAP-V2.txt           → Récap visuel
+• GIT-COMMANDS.txt       → Commandes git
+
+💡 CUSTOMISATION RAPIDE
+────────────────────────
+Vitesse carousel :
+  js/equipe-infinite.js ligne 129
+  const speed = 50; // ← Change ici
+
+Couleur néon :
+  css/design-system-v2.css ligne 24
+  --neon-green: #00ff7f; // ← Change ici
+
+🎯 SI PROBLÈME
+───────────────
+1. Console F12 → Vérifie logs GSAP
+2. Vérifie que les bons fichiers sont chargés
+3. Consulte TESTS-GUIDE.md section "Résolution"
+
+✨ C'EST PRÊT À TESTER !

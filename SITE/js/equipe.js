@@ -25,7 +25,8 @@ async function afficherJoueurs() {
       img.alt = joueur.firstname || 'Joueur';
       clone.querySelector('.js-player-name').textContent = joueur.firstname || '—';
       clone.querySelector('.js-comments-count').textContent = `${joueur.nbComments} avis`;
-      clone.querySelector('.js-player-link').href = `membre-detail.html?slug=${joueur.slug?.current || ''}`;
+      const slugVal = joueur.slug ? (typeof joueur.slug === 'string' ? joueur.slug : joueur.slug.current) : '';
+      clone.querySelector('.js-player-link').href = `membre-detail.html?slug=${encodeURIComponent(slugVal)}`;
       track.appendChild(clone);
     });
 
@@ -45,7 +46,7 @@ async function afficherJoueurs() {
     // Compute scroll width and start loop after layout settles
     setTimeout(() => {
       const scrollWidth = track.scrollWidth / 2; // since we duplicated the items
-      const pixelsPerSecond = 80; // tune for speed
+      const pixelsPerSecond = 100; // tuned by Hélidya — increase for snappier motion (change to adjust)
       const duration = scrollWidth / pixelsPerSecond;
 
       const loop = gsap.to(track, {

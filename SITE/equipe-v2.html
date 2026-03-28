@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Équipe — FootTracker</title>
+    <link rel="stylesheet" href="css/design-system-v2.css">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index-v2.html" class="nav-brand">
+          <div class="nav-logo">FT</div>
+          <span>FootTracker</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index-v2.html">Accueil</a></li>
+          <li><a href="equipe-v2.html">Équipe</a></li>
+          <li><a href="index-v2.html#features">Fonctionnalités</a></li>
+          <li><a href="index-v2.html#about">À Propos</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Team Section -->
+    <section class="team">
+      <div class="container">
+        <div class="team-header">
+          <div class="section-badge">Notre Force</div>
+          <h1 class="section-title">L'Équipe au Complet</h1>
+          <p class="section-subtitle">
+            Découvrez les profils détaillés de nos joueurs : statistiques, performances et analyses en temps réel.
+          </p>
+        </div>
+      </div>
+
+      <!-- Carousel Infini -->
+      <div class="carousel-wrapper">
+        <div id="players-grid"></div>
+      </div>
+    </section>
+
+    <!-- Template de carte joueur -->
+    <template id="player-card-template">
+      <article class="player-card">
+        <a href="#" class="player-card-link js-player-link">
+          <img 
+            src="" 
+            alt="" 
+            class="player-image js-player-img"
+            loading="lazy"
+          >
+          <div class="player-info">
+            <h3 class="player-name js-player-name">—</h3>
+            <div class="player-meta">
+              <span class="player-comments">
+                <span>💬</span>
+                <span class="js-comments-count">0 avis</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </article>
+    </template>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-brand">
+              <div class="footer-logo">FT</div>
+              <span>FootTracker</span>
+            </div>
+            <p class="footer-description">
+              Plateforme d'analyse professionnelle pour clubs et équipes de football modernes.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link">𝕏</a>
+              <a href="#" class="social-link">in</a>
+              <a href="#" class="social-link">f</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer-section-title">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="index-v2.html">Accueil</a></li>
+              <li><a href="equipe-v2.html">Équipe</a></li>
+              <li><a href="index-v2.html#features">Fonctionnalités</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-section-title">Légal</h4>
+            <ul class="footer-links">
+              <li><a href="#">Mentions Légales</a></li>
+              <li><a href="#">Confidentialité</a></li>
+              <li><a href="#">CGU</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2026 FootTracker. Tous droits réservés.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sanity.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/equipe-infinite.js"></script>
+    <script src="js/animations-v2.js"></script>
+  </body>
+</html>

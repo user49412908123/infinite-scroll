@@ -1,56 +1,121 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page equipe</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/accessibility.css" rel="stylesheet" />
+    <title>Équipe — FootTracker</title>
+    <link href="css/design-system.css" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar" id="navbar"></nav>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a href="index.html" class="nav-brand">
+          <div class="nav-logo">FT</div>
+          <span>FootTracker</span>
+        </a>
+        
+        <button class="nav-toggle" aria-label="Menu">☰</button>
+        
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="equipe.html">Équipe</a></li>
+          <li><a href="index.html#features">Fonctionnalités</a></li>
+          <li><a href="index.html#stats">Statistiques</a></li>
+        </ul>
+        
+        <div class="nav-actions">
+          <a href="equipe.html" class="btn-primary">Voir l'équipe</a>
+        </div>
+      </div>
+    </nav>
 
-    <main>
-      <section class="hero-section">
-        <div class="hero-section-container">
-          <h1>
-            Voici les différentes statistiques sur les équipes disponibles
-          </h1>
-          <p>
-            Vous retrouverez ci-dessous les différentes informations concenrnant
-            les différents joueurs, clickez sur les différentes cartes qui
-            défilent pour obtenir plus d'informations.
+    <!-- Team Section -->
+    <section class="team-section" style="padding-top: 120px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">NOTRE ÉQUIPE</span>
+          <h1 class="section-title">Découvrez nos joueurs</h1>
+          <p class="section-subtitle">
+            Explorez les profils détaillés de chaque membre de l'effectif avec statistiques et performances en temps réel.
           </p>
         </div>
-      </section>
-    </main>
-
-    <div class="carousel-wrapper">
-      <div class="carousel-mask">
-        <div id="players-grid" class="players-grid" role="list"></div>
+        
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="players-grid"></div>
+          <div class="carousel-fade-left"></div>
+          <div class="carousel-fade-right"></div>
+        </div>
       </div>
-      <div class="edge-blur edge-left" aria-hidden="true"></div>
-      <div class="edge-blur edge-right" aria-hidden="true"></div>
-    </div>
+    </section>
+
+    <!-- Template -->
     <template id="player-card-template">
       <article class="player-card">
-        <div class="player-img-container">
-          <img src="" alt="" class="js-player-img" />
-        </div>
-        <div class="player-content">
-          <h3 class="js-player-name"></h3>
-          <p class="js-player-desc"></p>
-          <div class="player-footer">
-            <span class="js-comments-count">0 avis</span>
-            <a href="" class="js-player-link btn-tracker">Voir le profil</a>
+        <img src="" alt="" class="player-image js-player-img" />
+        <div class="player-info">
+          <h3 class="player-name js-player-name">Nom du joueur</h3>
+          <div class="player-stats">
+            <span class="player-comments js-comments-count">0 avis</span>
+            <a href="" class="player-link js-player-link">Voir le profil →</a>
           </div>
         </div>
       </article>
     </template>
 
-    <script src="/SITE/js/sanity.js"></script>
-    <script src="/SITE/js/equipe.js"></script>
-    <script src="/SITE/js/gsap.min.js"></script>
-    <script src="/SITE/js/main.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-brand">
+              <div class="footer-logo">FT</div>
+              <span>FootTracker</span>
+            </div>
+            <p class="footer-description">
+              Plateforme d'analyse professionnelle pour clubs et équipes de football modernes.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link">𝕏</a>
+              <a href="#" class="social-link">in</a>
+              <a href="#" class="social-link">f</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer-section-title">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="equipe.html">Équipe</a></li>
+              <li><a href="index.html#features">Fonctionnalités</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-section-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-section-title">Légal</h4>
+            <ul class="footer-links">
+              <li><a href="#">Mentions légales</a></li>
+              <li><a href="#">Confidentialité</a></li>
+              <li><a href="#">CGU</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 FootTracker. Tous droits réservés.</p>
+          <p>Made with ⚡ by Hélidya</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/sanity.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/equipe-new.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

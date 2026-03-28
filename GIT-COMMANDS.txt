@@ -1,0 +1,49 @@
+# ====================================
+# COMMANDES GIT - FootTracker v2
+# ====================================
+
+# Option 1 : Tout en une ligne (Git Bash)
+# ----------------------------------------
+git add -A && git commit -m "feat(ui): carousel infini parfait + UX améliorée v2" -m "- Carousel seamless (onRepeat technique)" -m "- Hauteurs cartes fixes 420px" -m "- KPI lisibles (no backdrop-filter)" -m "- 2 sections accueil + animations scroll" -m "- GSAP documenté complet" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" && git push origin HEAD
+
+# Option 2 : Étape par étape
+# ---------------------------
+
+# 1. Ajouter tous les fichiers
+git add -A
+
+# 2. Commit
+git commit -m "feat(ui): carousel infini parfait + UX améliorée v2
+
+Corrections majeures :
+- Carousel infini sans coupure (onRepeat)
+- Cartes uniformes 420px
+- KPI lisibles (flou supprimé)
+- Animations scroll documentées
+- Design v2 épuré
+
+Fichiers créés :
+- css/design-system-v2.css
+- js/equipe-infinite.js
+- js/animations-v2.js
+- index-v2.html
+- equipe-v2.html
+- DOCUMENTATION-V2.md
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+
+# 3. Push
+git push origin HEAD
+
+# ====================================
+# VÉRIFICATIONS
+# ====================================
+
+# Voir le statut
+git status
+
+# Voir le dernier commit
+git log -1 --stat
+
+# Voir les fichiers modifiés
+git diff --name-only HEAD~1
