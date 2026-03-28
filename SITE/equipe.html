@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page equipe</title>
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar"></nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-section-container">
+          <h1>
+            Voici les différentes statistiques sur les équipes disponibles
+          </h1>
+          <p>
+            Vous retrouverez ci-dessous les différentes informations concenrnant
+            les différents joueurs, clickez sur les différentes cartes qui
+            défilent pour obtenir plus d'informations.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div id="players-grid" class="players-grid"></div>
+
+    <template id="player-card-template">
+      <article class="player-card">
+        <div class="player-img-container">
+          <img src="" alt="" class="js-player-img" />
+        </div>
+        <div class="player-content">
+          <h3 class="js-player-name"></h3>
+          <p class="js-player-desc"></p>
+          <div class="player-footer">
+            <span class="js-comments-count">0 avis</span>
+            <a href="" class="js-player-link btn-tracker">Voir le profil</a>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="/SITE/js/sanity.js"></script>
+    <script src="/SITE/js/equipe.js"></script>
+    <script src="/SITE/js/gsap.min.js"></script>
+    <script src="/SITE/js/main.js"></script>
+  </body>
+</html>

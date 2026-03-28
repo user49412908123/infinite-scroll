@@ -1,0 +1,65 @@
+/* Grille Responsive */
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+/* La Carte Joueur */
+.player-card {
+  background: #1a1a1a; /* Look sombre premium */
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid #333;
+}
+
+.player-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 255, 127, 0.2); /* Lueur verte "gazon" */
+  border-color: #00ff7f;
+}
+
+.player-img-container {
+  width: 100%;
+  height: 250px;
+  background: #222;
+}
+
+.player-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.player-card:hover img {
+  transform: scale(1.05);
+}
+
+.player-content {
+  padding: 20px;
+}
+
+.player-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+.btn-tracker {
+  background: #00ff7f;
+  color: #000;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}

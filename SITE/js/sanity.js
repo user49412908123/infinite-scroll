@@ -1,11 +1,20 @@
 const SANITY_PROJECT_ID = "k7909trb";
-const SANITY_DATASET = "production";
+const SANITY_DATASET = "infinite-scroll-dataset-1";
 const SANITY_API_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}`;
 
 async function sanityFetch(query) {
   const url = `${SANITY_API_URL}?query=${encodeURIComponent(query)}`;
   const response = await fetch(url);
-  if (!response.ok) throw new Error("Erreur API Sanity");
+
+  if (!response.ok) {
+    // On récupère le texte de l'erreur pour comprendre
+    const errorBody = await response.json();
+    console.error("Détails de l'erreur Sanity :", errorBody);
+    throw new Error(
+      `Erreur API : ${response.status} - ${errorBody.error.description || "Problème de requête"}`,
+    );
+  }
+
   const data = await response.json();
   return data.result;
 }
