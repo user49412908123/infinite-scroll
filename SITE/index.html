@@ -5,31 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page d'accueil tracker foot</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/accessibility.css" rel="stylesheet" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <nav class="navbar" id="navbar"></nav>
 
-    <main>
-      <section class="hero-section">
+    <main id="main">
+      <section class="hero-section hero-neon">
         <div class="hero-container">
-          <h1>
-            <span>FootTracker</span>, ton outil d'analyse footballistique
-            préféré
-          </h1>
-          <p>
-            Analysez en temps direct toutes les différentes informations
-            concernant les joueurs, matchs et informations sportives pour en
-            tirer les meilleurs résultats.
-          </p>
-          <div class="cta-container">
-            <button class="cta-1">Tarifs</button>
-            <button class="cta-2" href="/SITE/equipe.html">Equipe</button>
+          <div class="hero-left">
+            <h1 class="hero-title"><span class="brand">FootTracker</span> — <span class="tagline">Analyse & Performance</span></h1>
+            <p class="hero-sub">
+              Analysez en temps direct toutes les différentes informations concernant les joueurs, matchs et informations sportives pour en tirer les meilleurs résultats.
+            </p>
+            <div class="cta-container">
+              <a class="cta cta-primary" href="equipe.html">Voir l'équipe</a>
+              <a class="cta cta-secondary" href="#pricing">Tarifs</a>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="hero-visual" aria-hidden="true"></div>
+            <div class="hero-stats">
+              <div class="pill">Matchs en cours <strong>3</strong></div>
+              <div class="pill">Joueurs suivis <strong>24</strong></div>
+            </div>
           </div>
         </div>
+        <div class="hero-gradient" aria-hidden="true"></div>
       </section>
     </main>
 
     <script src="/SITE/js/gsap.min.js"></script>
+    <script src="/SITE/js/hero.js"></script>
     <script src="/SITE/js/main.js"></script>
   </body>
 </html>

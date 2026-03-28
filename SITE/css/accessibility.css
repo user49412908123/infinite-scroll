@@ -1,0 +1,28 @@
+/* accessibility.css
+   Focus styles, skip link, reduced-motion preference, and small accessibility helpers.
+*/
+
+/* Skip link - visible on keyboard focus */
+.skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; }
+.skip-link:focus, .skip-link:active { left: 12px; top: 12px; width: auto; height: auto; padding: 8px 12px; background: #0b0b0b; color: #fff; border-radius: 6px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.6); }
+
+/* Focus-visible for interactive elements */
+:focus:not(.skip-link) { outline: none; }
+:focus-visible { outline: 3px solid var(--neon); outline-offset: 4px; }
+
+/* Specific interactive focus styles */
+a.cta:focus-visible, .btn-tracker:focus-visible, .player-card:focus-visible { box-shadow: 0 10px 30px rgba(0,255,127,0.12); transform: translateY(-6px); }
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* Touch and tap helpers */
+button, a { touch-action: manipulation; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+/* Small contrast improvements */
+.pill, .stat-card { color: #e6fff2; }
+
+/* Visually-hidden helper */
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }

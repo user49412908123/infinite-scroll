@@ -2,29 +2,41 @@ const SANITY_PROJECT_ID = "k7909trb";
 const SANITY_DATASET = "infinite-scroll-dataset-1";
 const SANITY_API_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}`;
 
+// Robust sanityFetch: safe JSON parsing and clearer error messages
 async function sanityFetch(query) {
   const url = `${SANITY_API_URL}?query=${encodeURIComponent(query)}`;
-  const response = await fetch(url);
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    let data = null;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch (parseErr) {
+      console.error('Impossible de parser la réponse Sanity JSON:', parseErr, text);
+      throw new Error(`Sanity API returned invalid JSON: ${parseErr.message}`);
+    }
 
-  if (!response.ok) {
-    // On récupère le texte de l'erreur pour comprendre
-    const errorBody = await response.json();
-    console.error("Détails de l'erreur Sanity :", errorBody);
-    throw new Error(
-      `Erreur API : ${response.status} - ${errorBody.error.description || "Problème de requête"}`,
-    );
+    if (!response.ok) {
+      console.error("Détails de l'erreur Sanity :", data || text);
+      const errMsg = data?.error?.description || data?.message || text || `HTTP ${response.status}`;
+      throw new Error(`Erreur API : ${response.status} - ${errMsg}`);
+    }
+
+    // Some responses wrap the payload in { result: ... }, keep backwards compatibility
+    return data?.result ?? data;
+  } catch (err) {
+    console.error('sanityFetch error:', err);
+    throw err;
   }
-
-  const data = await response.json();
-  return data.result;
 }
 
-function imageUrl(asset, width = 800) {
-  if (!asset || !asset.url) {
-    return "https://via.placeholder.com/800x400?text=Image+non+disponible";
-  }
-
-  return `${asset.url}?w=${width}&auto=format`;
+// Accept either an asset object ({url: '...'}) or a raw URL string
+function imageUrl(assetOrUrl, width = 800) {
+  const placeholder = "https://via.placeholder.com/800x400?text=Image+non+disponible";
+  if (!assetOrUrl) return placeholder;
+  if (typeof assetOrUrl === 'string') return `${assetOrUrl}?w=${width}&auto=format`;
+  if (assetOrUrl.url) return `${assetOrUrl.url}?w=${width}&auto=format`;
+  return placeholder;
 }
 
 function formatDate(dateString) {

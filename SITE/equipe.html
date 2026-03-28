@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page equipe</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/accessibility.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar" id="navbar"></nav>
@@ -24,8 +25,13 @@
       </section>
     </main>
 
-    <div id="players-grid" class="players-grid"></div>
-
+    <div class="carousel-wrapper">
+      <div class="carousel-mask">
+        <div id="players-grid" class="players-grid" role="list"></div>
+      </div>
+      <div class="edge-blur edge-left" aria-hidden="true"></div>
+      <div class="edge-blur edge-right" aria-hidden="true"></div>
+    </div>
     <template id="player-card-template">
       <article class="player-card">
         <div class="player-img-container">

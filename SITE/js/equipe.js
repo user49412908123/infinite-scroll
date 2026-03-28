@@ -1,55 +1,72 @@
 async function afficherJoueurs() {
-  const grid = document.getElementById("players-grid");
+  const track = document.getElementById("players-grid");
   const template = document.getElementById("player-card-template");
 
   try {
-    // On récupère les membres ET on compte leurs commentaires liés
     const joueurs = await sanityFetch(`*[_type == "member"] {
-      name, 
-      slug, 
-      description,
-      "imageUrl": image.asset->url,
+      firstname,
+      slug,
+      poids,
+      "imageUrl": mainImage.asset->url,
       "nbComments": count(*[_type == "comment" && belongsTo._ref == ^._id])
     }`);
 
     if (!joueurs || joueurs.length === 0) {
-      grid.innerHTML = "<p>Aucun joueur dans l'effectif.</p>";
+      track.innerHTML = "<p>Aucun joueur dans l'effectif.</p>";
       return;
     }
 
-    grid.innerHTML = ""; // On vide le message de chargement
+    track.innerHTML = "";
 
     joueurs.forEach((joueur) => {
       const clone = template.content.cloneNode(true);
-
-      // On remplit le clone avec les données Sanity
-      clone.querySelector(".js-player-img").src = joueur.imageUrl
-        ? `${joueur.imageUrl}?w=600`
-        : "https://via.placeholder.com/600x800";
-      clone.querySelector(".js-player-img").alt = joueur.name;
-      clone.querySelector(".js-player-name").textContent = joueur.name;
-      clone.querySelector(".js-player-desc").textContent =
-        joueur.description || "";
-      clone.querySelector(".js-comments-count").textContent =
-        `${joueur.nbComments} avis`;
-      clone.querySelector(".js-player-link").href =
-        `membre-detail.html?slug=${joueur.slug.current}`;
-
-      grid.appendChild(clone);
+      const img = clone.querySelector('.js-player-img');
+      img.src = joueur.imageUrl ? `${joueur.imageUrl}?w=600&auto=format` : "https://via.placeholder.com/600x800";
+      img.alt = joueur.firstname || 'Joueur';
+      clone.querySelector('.js-player-name').textContent = joueur.firstname || '—';
+      clone.querySelector('.js-comments-count').textContent = `${joueur.nbComments} avis`;
+      clone.querySelector('.js-player-link').href = `membre-detail.html?slug=${joueur.slug?.current || ''}`;
+      track.appendChild(clone);
     });
 
-    // Animation GSAP une fois que tout est ajouté
-    gsap.from(".player-card", {
+    // Duplicate nodes so loop appears infinite
+    const originals = Array.from(track.children);
+    originals.forEach(node => track.appendChild(node.cloneNode(true)));
+
+    // Entry animation
+    gsap.from(track.querySelectorAll('.player-card'), {
       opacity: 0,
-      y: 30,
-      stagger: 0.1,
-      duration: 0.8,
-      ease: "power2.out",
+      y: 20,
+      stagger: 0.08,
+      duration: 0.7,
+      ease: 'power2.out'
     });
+
+    // Compute scroll width and start loop after layout settles
+    setTimeout(() => {
+      const scrollWidth = track.scrollWidth / 2; // since we duplicated the items
+      const pixelsPerSecond = 80; // tune for speed
+      const duration = scrollWidth / pixelsPerSecond;
+
+      const loop = gsap.to(track, {
+        x: -scrollWidth,
+        duration,
+        ease: 'none',
+        repeat: -1
+      });
+
+      const parent = track.closest('.carousel-wrapper') || track.parentElement;
+      if (parent) {
+        parent.addEventListener('mouseenter', () => loop.pause());
+        parent.addEventListener('mouseleave', () => loop.resume());
+        parent.addEventListener('touchstart', () => loop.pause(), { passive: true });
+        parent.addEventListener('touchend', () => loop.resume());
+      }
+    }, 200);
+
   } catch (err) {
-    grid.innerHTML =
-      "<p>Erreur lors du transfert des données du terrain...</p>";
-    console.error("Détails technique :", err);
+    track.innerHTML = "<p>Erreur lors du transfert des donn\u00e9es du terrain...</p>";
+    console.error("D\u00e9tails technique :", err);
   }
 }
 
